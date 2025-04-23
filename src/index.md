@@ -2,11 +2,9 @@
 
 ```js
 import getSnakePaths from "./getSnakePaths.js";
-```
-
-```js
 import { hsl } from "npm:d3-color";
 ```
+
 
 ```js
 const jarJar = FileAttachment("./jarjar.png").image()
@@ -102,7 +100,7 @@ const SHORT_TITLES = {
 
 const COLORS_BY_CATEGORY = {
   "theatrical": "#ff0055",
-  "live action": "#00FF9C",
+  "live action": "#00ce7f",
   "animated": "#1f4cff",
 }
 
@@ -114,7 +112,23 @@ const HUE_SHIFTS = {
   11: 3,
   1891: 6,
   1892: 9,
-} 
+}
+
+
+const startOffsetPx = 130;
+const totalLengthPx = 19000;
+const bendRadiusPx =  100;
+const lineLengthPx = 830;
+const maxHeightPx = 130;
+const sectionVerticalPadding = 0;
+const separatorRunningTime = 15;
+const defaultRunningTime = 50; // Only used for Andor S2
+const defaultJarJarThreshold = 6.6;
+const sectionPathsOpacity = .3;
+const opacityAboveJarJar = 1;
+const opacityBelowJarJar = 0.2;
+const jarJarDashArray = "4px, 1px";
+
 
 function hueShift(hexColor, amount) {
   const color = hsl(hexColor); // Parse to HSL
@@ -125,19 +139,28 @@ function hueShift(hexColor, amount) {
 
 function getColor(d) {
   if (d.type === "separator") {
-    return "none";
+    return "transparent";
   }
   const shift = HUE_SHIFTS[d.section?.id] || 0;
- return hueShift(COLORS_BY_CATEGORY[d.category], shift)
+  return hueShift(COLORS_BY_CATEGORY[d.category], shift)
 }
 
 function getTitle(d) {
   return SHORT_TITLES[d.section.id] || d.section.shortTitle;
 }
 
+function getTitlePxLength(title) {
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+  context.font = "18px Roboto Condensed";
+  return context.measureText(title).width;
+}
+
 
 function getRunningTime(d) {
-  return d.type === "separator" ? 20 : d.type === "sectionIntro" ? getTitle(d).length * 10 : d.runtime
+  return d.type === "separator" ? 
+    separatorRunningTime : 
+    d.type === "sectionIntro" ? getTitlePxLength(getTitle(d)) * 1.3 + 60 : d.runtime || defaultRunningTime;
 }
 
 ```
@@ -145,19 +168,24 @@ function getRunningTime(d) {
 
 ```js
 const data = await FileAttachment("./data/starwars-chrono.json").json();
+const plotTwists = await FileAttachment("./data/plot-twists.json").json();
 const parseIMDBRating = (ratings) => !ratings ? null : parseFloat(ratings["Internet Movie Database"].split("/")[0]);
-const allItems = data.flatMap((section) =>
-  section.items.map((item) => ({ 
-    ...item,
-    category: Object.keys(CATEGORIES).find((key) => CATEGORIES[key].includes(section.id)),
-    rating: parseIMDBRating(section.ratings) || parseIMDBRating(item.ratings) || item.rating,
-    section: {
-      ...section,
-      shortTitle: section.title.replace(/Star Wars: /, ""),
-    }
-  }))
+const allItems = data.flatMap((section) => {
+  return section.items.map((item, i) => {
+    const plotTwist = plotTwists.find((d) => d.id === section.id && (item.type === "movie" || (item.season === d.Season && item.episode === d.Episode)));
+    return { 
+      ...item,
+      plotTwist,
+      category: Object.keys(CATEGORIES).find((key) => CATEGORIES[key].includes(section.id)),
+      rating: parseIMDBRating(section.ratings) || parseIMDBRating(item.ratings) || item.rating,
+      section: {
+        ...section,
+        shortTitle: section.title.replace(/Star Wars: /, ""),
+      }
+  }})
+})
 // Ignore the "Star Wars: Young Jedi Adventures" section, ewoks, and Droids
-).filter(d => ![202998, 25, 3478].includes(d.section.id));
+// .filter(d => ![202998, 25, 3478].includes(d.section.id));
 ```
 
 ```js
@@ -173,7 +201,7 @@ const sortOrder = view(Inputs.radio(["story chronological", "release date"], {la
 ```
 
 ```js
-const jarJarThreshold = view(Inputs.range([0, 10], {label: "Jar Jar threshold", value: 6.5, step: 0.1}));
+const jarJarThreshold = view(Inputs.range([0, 10], {label: "Jar Jar threshold", value: defaultJarJarThreshold, step: 0.1}));
 ```
 
 ```js
@@ -244,38 +272,44 @@ separatedItems = separatedItems.map((item, i) => {
   }
 });
 
+// Add new season flags
+separatedItems = separatedItems.map((item, i) => {
+  const prevItem = separatedItems[i - 1];
+  const newSeason = prevItem && (prevItem.type === "sectionIntro" || prevItem.season !== item.season);
+  return {
+    ...item,
+    newSeason
+  }
+})
 
-display(separatedItems)
-display(sectionsLengths)
+// display(separatedItems)
+// display(sectionsLengths)
 ```
 
 
 
 ```js
-const startOffsetPx = 130;
-const totalLengthPx = 15000;
-const bendRadiusPx =  100;
-const lineLengthPx = 800;
-const maxHeightPx = 130;
-const sectionVerticalPadding = 0;
-const separatorRunningTime = 5;
-const sectionIntroRunningTime = 200;
-// const jarJarThreshold = 7.5;
+
 const padding = {
-  top: 280,
-  left: 200,
+  top: 360,
+  left: bendRadiusPx * 2.1,
 }
 const heightScale = d3.scaleLinear().domain([0, 10]).range([0, maxHeightPx]);
-const jarJarScale = d3.scaleLinear().domain([jarJarThreshold, 10]).range([0.7, 1]);
+// const jarJarScale = d3.scaleLinear().domain([jarJarThreshold, 10]).range([0.7, 1]);
+const jarJarScale = (d) => d.rating < jarJarThreshold ? opacityBelowJarJar : opacityAboveJarJar;
 
 
 const svg = d3
   .select("body")
   .append("svg")
-  .attr("width", 10000)
-  .attr("height", 3500)
-  .style("background", `url('${await bg.url()}') no-repeat`)
-  .style("background-size", "contain")
+  .attr("width", lineLengthPx + padding.left * 2)
+  .attr("height", totalLengthPx * .205)
+  .style("background", `linear-gradient(
+          rgba(0, 0, 0, 0.5), 
+          rgba(0, 0, 0, 0.4)
+        ), url('${await bg.url()}') no-repeat`)
+  .style("background-size", "cover")
+  .style("background-position", "center")
 
 svg
   .append("defs")
@@ -326,8 +360,8 @@ plot
   .append("path")
   .attr("d", (d) => d.path)
   .style("fill", getColor)
-  .style('fill-opacity',.3)
-  .style("stroke-width", 1);
+  .style('fill-opacity', sectionPathsOpacity)
+
 
 
 // Generate items paths
@@ -346,6 +380,8 @@ const { polygonsPaths, gridLines, endLinesPaths } = getSnakePaths(separatedItems
     -(maxHeightPx + sectionVerticalPadding) / 2,
     heightScale(jarJarThreshold) / 2,
     -heightScale(jarJarThreshold) / 2,
+    -heightScale(jarJarThreshold) / 6,
+    heightScale(jarJarThreshold) / 6,
   ]
 });
 
@@ -361,7 +397,7 @@ plot
   .attr("data", (d) => d.title)
   .attr("d", (d) => d.path)
   .style("fill", d => d.type === "sectionIntro" ? "transparent" : getColor(d))
-  .style('fill-opacity', d => d.rating < jarJarThreshold ? .4 : jarJarScale(d.rating))
+  .style('fill-opacity', jarJarScale)
   // .style("filter", d => d.rating >= jarJarThreshold ? "url(#glow)" : "none")
   .style("filter","url(#glow)")
   .on("mouseenter", function (event, d) {
@@ -380,15 +416,15 @@ plot
 
 
 
-    plot
-      .append("g")
-      .selectAll("path")
-      .data(polygonsPaths.find(d2 => d2.id === currentSelectionId))
-      .enter()
-      .append("path")
-      .attr("d", (d2) => d2.path)
-      .attr("fill", "none")
-      .attr("stroke", "#fff")
+    // plot
+    //   .append("g")
+    //   .selectAll("path")
+    //   .data(polygonsPaths.find(d2 => d2.id === currentSelectionId))
+    //   .enter()
+    //   .append("path")
+    //   .attr("d", (d2) => d2.path)
+    //   .attr("fill", "none")
+    //   .attr("stroke", "#fff")
 
     // d3.select(this)
     //   .style("stroke", "#fff")
@@ -408,16 +444,18 @@ plot
   });
 
 // Highlights
-
 plot
   .append("g")
   .selectAll("path")
-  .data(polygonsPaths.filter(d => d.id === currentSelectionId))
+  // .data(polygonsPaths.filter(d => d.id === currentSelectionId))
+  .data(polygonsPaths.filter(d => d.type !== "sectionIntro" && d.type !== "separator"))
   .enter()
   .append("path")
   .attr("d", (d) => d.path)
   .attr("fill", "none")
-  .attr("stroke", "#fff")
+  // .attr("stroke", "#fff")
+  .attr("stroke", d => d.type === "sectionIntro" ? "none" : d.rating < jarJarThreshold ? getColor(d) : "white")
+  .attr("stroke-opacity", d => d.rating < jarJarThreshold ? .7 : .3)
 
 
 // // Start lines
@@ -441,7 +479,7 @@ plot
 //       : 2
 //   );
 
-// Draw line
+// Text lines
 plot
   .append("g")
   .append("path")
@@ -460,46 +498,129 @@ plot
   .style("fill", "none")
   .style("stroke-width", 1);
 
+plot
+  .append("g")
+  .append("path")
+  .attr("id", "linePathUp")
+  .attr("d", gridLines[5].linePath)
+  // .style("stroke", "green")
+  .style("fill", "none")
+  .style("stroke-width", 1);
+
+plot
+  .append("g")
+  .append("path")
+  .attr("id", "reverseLinePathUp")
+  .attr("d", gridLines[6].reverseLinePath)
+  // .style("stroke", "pink")
+  .style("fill", "none")
+  .style("stroke-width", 1);
+
+const getEpisodeTitle = d => `${d.episode || ''}${d.plotTwist ? d.plotTwist.Importance === "major" ? '★' : '☆' : ''}`
+
 // Text titles in two directions
-[
+const directions = [
   {
     modesIncluded: [0, 1],
     textPathHref: "#linePath",
-    startOffset: d => d.currentLengthPx - 120,
+    sectionIntroStartOffset: d => d.currentLengthPx - 110,
+    episodeStartOffset: d => (d.currentLengthPx - 120) - getEpisodeTitle(d).length * 3,
+    getTitle: d => `${getTitle(d)} ▸`
   },
   {
     modesIncluded: [2, 3],
     textPathHref: "#reverseLinePath",
-    startOffset: d => {
-      const baseLength = d.currentReverseLengthPx;
-      if (d.type === "movie") {
-        return baseLength
-      }
-      const title = getTitle(d);
-      return baseLength - title.length * 7
-    }
+    sectionIntroStartOffset: d => d.currentReverseLengthPx - 90,
+    episodeStartOffset: d => (d.currentReverseLengthPx - 116) - getEpisodeTitle(d).length * 3 - ([203085, 251091].includes(d.section?.id) ? 6 : 0),
+    getTitle: d => `◂ ${getTitle(d)}`
   }
-].forEach(({ modesIncluded, textPathHref, startOffset }) => {
+]
+
+// Section intros texts
+directions.forEach(({ modesIncluded, textPathHref, sectionIntroStartOffset, getTitle }) => {
   plot
     .append("g")
     .selectAll("text")
     .data(polygonsPaths.filter(d => 
       d.type === "sectionIntro" &&
-      // (d.type === "movie" || d.currentSectionLength > 3) && 
-      // d.isFirst ===  true &&
-      modesIncluded.includes(d.currentMode)))
+      modesIncluded.includes(d.newMode || d.currentMode)))
     .enter()
     .append("text")
+    .attr("dy", 5)
     .append("textPath")
     .attr("href", textPathHref)
-    .attr("startOffset", startOffset)
+    .attr("startOffset", sectionIntroStartOffset)
     // .attr("fill", d => COLORS_BY_CATEGORY[d.category])
     .attr("fill", "#fff")
-    .attr("font-size", "16px")
-    // .style("filter", "url(#glow)")
-    // .style("text-shadow", "0px 0px 4px #fff, 0px 0px 4px #fff, 0px 0px 4px #fff, 0px 0px 4px #fff")
-    .text(d => getTitle(d)); 
+    .attr("font-size", "18px")
+    .text(getTitle); 
 });
+
+// Episode numbers
+directions.forEach(({ modesIncluded, textPathHref, episodeStartOffset }) => {
+  plot
+    .append("g")
+    .selectAll("text")
+    .data(polygonsPaths.filter(d => 
+      // d.type === "episode" &&
+      modesIncluded.includes(d.newMode || d.currentMode)))
+    .enter()
+    .append("text")
+    .attr("dy", 4)
+    .append("textPath")
+    .attr("href", textPathHref)
+    .attr("startOffset", episodeStartOffset)
+    // .attr("fill", d => COLORS_BY_CATEGORY[d.category])
+    .attr("fill", "#fff")
+    .attr("font-size", "12px")
+    .text(getEpisodeTitle)
+    .style("letter-spacing", "-0.1em")
+});
+
+const getSeasonTitle = (d, direction) => {
+  const title = `S${d.season}`;
+  return direction === "forward" ? `${title}▸` : `◂${title}`;
+}
+
+// Season numbers
+const directionsSeasons = [
+  {
+    modesIncluded: [0, 1],
+    textPathHref: "#linePathUp",
+    episodeStartOffset: d => (d.currentLengthPx - 120) - getSeasonTitle(d, "forward").length * 3,
+    getTitle: d =>  getSeasonTitle(d, "forward")
+  },
+  {
+    modesIncluded: [2, 3],
+    textPathHref: "#reverseLinePathUp",
+    episodeStartOffset: d => d.currentReverseLengthPx - 103,
+    getTitle: d => getSeasonTitle(d, "backward")
+  }
+]
+
+directionsSeasons.forEach(({ modesIncluded, textPathHref, episodeStartOffset, getTitle }) => {
+  plot
+    .append("g")
+    .selectAll("text")
+    .data(polygonsPaths.filter(d => 
+      d.type === "episode" 
+      && d.newSeason
+      // Skip season indicator for tales of the jedi, tales of the empire
+      && ![203085, 251091].includes(d.section.id) 
+      && modesIncluded.includes(d.currentMode)
+       ))
+    .enter()
+    .append("text")
+    .attr("dy", 4)
+    .append("textPath")
+    .attr("href", textPathHref)
+    .attr("startOffset", episodeStartOffset)
+    .attr("fill", "#fff")
+    .attr("font-size", "12px")
+    .text(getTitle);
+});
+
+
 
 
 // Jar jar lines
@@ -512,7 +633,7 @@ plot
     .style("stroke", "#fff")
     .style("fill", "none")
     .style("stroke-width", 1)
-    .style("stroke-dasharray", "2px, 2px")
+    .style("stroke-dasharray", jarJarDashArray)
 });
 
 
@@ -523,24 +644,29 @@ const tooltip = d3.select("body")
   .style("position", "absolute")
   .style("pointer-events", "none")
   .style("display", "none")
-  .style("background", "#ffffffaa")
+  .style("background", "#ffffffcc")
   .style("padding", "4px 8px")
   .style("border-radius", "4px")
   .style("font-size", "12px");
 
+const header = svg
+  .append("g")
+  .attr("transform", `translate(${padding.left - bendRadiusPx * 1.6}, ${padding.top - 280})`)
+
+
 // title 
-const title = svg
+const title = header
   .append("text")
-  .attr("x", padding.left - bendRadiusPx * 1.6)
-  .attr("y", padding.top - 200)
   .attr("font-size", "40px")
   .attr("fill", "#ff0")
-  .text(sortOrder === "story chronological" ? "Star Wars watch guide: chronological order" : "Star Wars watch guide: release date")
+  .text("Star Wars unfolded")
+  // .text(sortOrder === "story chronological" ? "Star Wars unfolded: chronological order" : "Star Wars watch guide: release date")
   .style("filter", "url(#glow)");
 
-const legendItems = svg
+
+const legendItems = header
   .append("g")
-  .attr("transform", `translate(${padding.left - bendRadiusPx * 1.6}, ${padding.top - 170})`)
+  .attr("transform", `translate(0, 140)`)
   .selectAll("rect")
   .data(Object.keys(CATEGORIES))
   .enter()
@@ -559,68 +685,115 @@ legendItems
   .append("text")
   .attr("x", 50)
   .attr("y", 10)
-  .attr("font-size", "16px")
-  .attr("fill", "#ff0")
+  .attr("fill", "#fff")
   .text((d) => d);
 
-const text = svg
+const howToUse = header
+  .append("g")
+  .attr("transform", `translate(0, 30)`)
   .append("text")
-    .attr("transform", `translate(${padding.left - bendRadiusPx * 1.6}, ${padding.top - 120})`)
-  .attr("font-size", "16px")
+  .attr("x", 0)
+  .attr("y", 0)
+  .attr("font-size", "18px")
   .attr("fill", "#fff")
-  .text("The height of each rectangle represents the IMDB rating of the movie/episode.");
+
+
+howToUse
+  .append("tspan")
+  .attr("fill", "#ff0")
+  .text(`A timeline of every Star Wars film, live-action show, and animated series, charted in story-order from the dawn of the Republic to the rise of the First Order.`)
+
+howToUse
+  .append("tspan")
+  .attr("x", 0)
+  .attr("dy", 45)
+  .text(`Each entry’s height ↕ reflects its IMDb rating — the higher the rating, the taller the bar.`)
+
+howToUse
+  .append("tspan")
+  .attr("x", 0)
+  .attr("dy", 25)
+  .text(`Entries rated above ${jarJarThreshold} appear more opaque, helping you steer past the less beloved moments in the saga — a.k.a. the "Jar Jar Zone".`)
+
+howToUse
+  .append("tspan")
+  .attr("x", 0)
+  .attr("dy", 25)
+  .text(`Plot twist markers: ★ indicates a major twist in the story, ☆ a secondary one.`)
+
+howToUse
+  .append("tspan")
+  .attr("x", 0)
+  .attr("dy", 65)
+  .text(`Made by Erik Escoffier - @nerik.bsky.social`)
+
 
 const jarJarLegendWrapper = plot
   .append("g")
-  // .attr("transform", `translate(${padding.left - bendRadiusPx * 1.6}, ${padding.top - 150})`)
+  .attr("transform", `translate(${startOffsetPx}, 0)`)
 
-const jarJarLegend = jarJarLegendWrapper
+const arrowXOffsetPx = -60;
+const jarJarLegendArrow = jarJarLegendWrapper
   .append("g")
-  .attr("transform", `translate(-20, ${-heightScale(jarJarThreshold)/2})`)
+  .attr("transform", `translate(${arrowXOffsetPx}, ${-heightScale(jarJarThreshold)/2})`)
+  .attr("stroke-dasharray", jarJarDashArray)
+  .attr("stroke", "#fff")
   // .attr("transform", `translate(${padding.left - bendRadiusPx * 1.6}, ${padding.top - 150})`)
 
-jarJarLegend
+
+jarJarLegendArrow
   .append("line")
   .attr("x1", 0)
   .attr("y1", 0)
   .attr("x2", 0)
   .attr("y2", heightScale(jarJarThreshold))
-  .attr("stroke", "#fff")
-  .attr("stroke-width", 1)
-  .attr("stroke-dasharray", "2px, 2px")
   .attr("marker-end", "url(#triangle)")
   .attr("marker-start", "url(#triangle)")
   .attr("markerWidth", 10)
   .attr("markerHeight", 10)
 
+jarJarLegendArrow
+  .append("line")
+  .attr("x1", 0)
+  .attr("y1", 0)
+  .attr("x2", -arrowXOffsetPx)
+  .attr("y2", 0)
+jarJarLegendArrow
+  .append("line")
+  .attr("x1", 0)
+  .attr("y1",  heightScale(jarJarThreshold))
+  .attr("x2", -arrowXOffsetPx)
+  .attr("y2",  heightScale(jarJarThreshold))
+
+
 const jarJarText = jarJarLegendWrapper
   .append("text")
-  .attr("x", -30)
-  .attr("y", 20)
-  .attr("font-size", "16px")
+  .attr("x", arrowXOffsetPx - 10)
+  .attr("y", 18)
+  .attr("font-size", "18px")
   .attr("fill", "#fff")
 
 jarJarText
   .append("tspan")
-    .attr("text-anchor", "end")
-  .text(`Jar Jar zone: ${jarJarThreshold}`);
+  .attr("text-anchor", "end")
+  .text('Jar Jar zone');
 
 jarJarText
   .append("tspan")
-  .attr("x", -30)
-  .attr("dy", 20)
+  .attr("x", arrowXOffsetPx - 10)
+  .attr("dy", 19)
   .style("font-weight", "400")
   .attr("text-anchor", "end")
-  .text("Watch at your own risk!");
+  .text(`IMDB rating < ${jarJarThreshold}`);
 
 jarJarLegendWrapper
   .append("image")
   .attr("xlink:href", await jarJarImg.url())
   // Invert colors
   .style("filter", "invert(1)")
-  .attr("width", 50)
-  .attr("x", -80)
-  .attr("y", -50) 
+  .attr("width", 45)
+  .attr("x", arrowXOffsetPx - 50)
+  .attr("y", -45) 
 
 
 display(svg.node());

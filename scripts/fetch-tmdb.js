@@ -6,17 +6,17 @@ const STAR_WARS_COLLECTION_ID = 10; // Official "Star Wars Collection" on TMDB
 
 const STAR_WARS_SHOW_IDS = [
   114479, // The Acolyte
-  202998, // Young Jedi adventures
+  // 202998, // Young Jedi adventures
   // 3122, // Clone wars
   4194, // The Clone Wars
   203085, // Tales of the Jedi
   251091, // Tales of the Empire
   105971, // The Bad Batch
-  25, // Droids
+  // 25, // Droids
   83867, // Andor
   92830, // Obi-Wan Kenobi
   60554, // Rebels
-  3478, // Ewoks
+  // 3478, // Ewoks
   82856, // The Mandalorian
   115036, // The Book of Boba Fett
   114461, // Ahsoka

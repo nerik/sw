@@ -1,0 +1,272 @@
+[
+  {
+    "Title": "The Phantom Menace",
+    "id": 1893,
+    "Season": null,
+    "Episode": null,
+    "Importance": "major",
+    "No-Spoiler Description": "A key political figure is revealed to be more than they seem.",
+    "Spoiler Description": "Darth Sidious is secretly orchestrating the events as a Sith Lord."
+  },
+  {
+    "Title": "Attack of the Clones",
+    "id": 1894,
+    "Season": null,
+    "Episode": null,
+    "Importance": "major",
+    "No-Spoiler Description": "A war begins under suspicious circumstances.",
+    "Spoiler Description": "Count Dooku reveals a Sith controls the Republic; the clone army's origins are shady."
+  },
+  {
+    "Title": "Revenge of the Sith",
+    "id": 1895,
+    "Season": null,
+    "Episode": null,
+    "Importance": "major",
+    "No-Spoiler Description": "The Republic falls and loyalties are broken.",
+    "Spoiler Description": "Palpatine reveals himself as Darth Sidious, executes Order 66, and Anakin turns to the dark side."
+  },
+  {
+    "Title": "A New Hope",
+    "id": 11,
+    "Season": null,
+    "Episode": null,
+    "Importance": "major",
+    "No-Spoiler Description": "A young hero learns the truth about their father.",
+    "Spoiler Description": "Obi-Wan tells Luke that Vader betrayed and murdered his father."
+  },
+  {
+    "Title": "The Empire Strikes Back",
+    "id": 1891,
+    "Season": null,
+    "Episode": null,
+    "Importance": "major",
+    "No-Spoiler Description": "A villain reveals a shocking truth.",
+    "Spoiler Description": "Vader tells Luke: 'I am your father.'"
+  },
+  {
+    "Title": "Return of the Jedi",
+    "id": 1892,
+    "Season": null,
+    "Episode": null,
+    "Importance": "major",
+    "No-Spoiler Description": "A final confrontation ends with redemption.",
+    "Spoiler Description": "Vader turns against the Emperor to save Luke and dies redeemed."
+  },
+  {
+    "Title": "The Clone Wars",
+    "id": 4194,
+    "Season": 4,
+    "Episode": 21,
+    "Importance": "major",
+    "No-Spoiler Description": "A presumed-dead foe returns.",
+    "Spoiler Description": "Darth Maul is revealed to be alive."
+  },
+  {
+    "Title": "The Clone Wars",
+    "id": 4194,
+    "Season": 5,
+    "Episode": 20,
+    "Importance": "major",
+    "No-Spoiler Description": "A Jedi loses faith in the Order.",
+    "Spoiler Description": "Ahsoka leaves the Jedi Order after being falsely accused."
+  },
+  {
+    "Title": "The Clone Wars",
+    "id": 4194,
+    "Season": 6,
+    "Episode": 1,
+    "Importance": "major",
+    "No-Spoiler Description": "A dark secret in the clone army begins to surface.",
+    "Spoiler Description": "Fives discovers the inhibitor chips used for Order 66."
+  },
+  {
+    "Title": "The Clone Wars",
+    "id": 4194,
+    "Season": 7,
+    "Episode": 11,
+    "Importance": "major",
+    "No-Spoiler Description": "A critical order is issued and a key character must survive.",
+    "Spoiler Description": "Order 66 is executed; Ahsoka and Rex must survive the betrayal."
+  },
+  {
+    "Title": "The Bad Batch",
+    "id": 105971,
+    "Season": 1,
+    "Episode": 15,
+    "Importance": "major",
+    "No-Spoiler Description": "The clones face a devastating shift.",
+    "Spoiler Description": "Kamino is destroyed, and Crosshair declares loyalty to the Empire."
+  },
+  {
+    "Title": "The Bad Batch",
+    "id": 105971,
+    "Season": 2,
+    "Episode": 3,
+    "Importance": "secondary",
+    "No-Spoiler Description": "An isolated mission reveals emotional consequences.",
+    "Spoiler Description": "Crosshair shows signs of doubt and individual struggle."
+  },
+  {
+    "Title": "The Bad Batch",
+    "id": 105971,
+    "Season": 2,
+    "Episode": 8,
+    "Importance": "major",
+    "No-Spoiler Description": "An attempt to expose the truth has consequences.",
+    "Spoiler Description": "Senator Chuchi and the Batch try to expose the Empire’s plan for the clones."
+  },
+  {
+    "Title": "Rebels",
+    "id": 60554,
+    "Season": 2,
+    "Episode": 18,
+    "Importance": "major",
+    "No-Spoiler Description": "A confrontation with an old enemy changes everything.",
+    "Spoiler Description": ""
+  },
+  {
+    "Title": "Rebels",
+    "id": 60554,
+    "Season": 4,
+    "Episode": 10,
+    "Importance": "major",
+    "No-Spoiler Description": "A discovery reshapes what's possible.",
+    "Spoiler Description": ""
+  },
+  {
+    "Title": "Andor",
+    "id": 83867,
+    "Season": 1,
+    "Episode": 10,
+    "Importance": "major",
+    "No-Spoiler Description": "A breakout defines the character’s path.",
+    "Spoiler Description": ""
+  },
+  {
+    "Title": "Andor",
+    "id": 83867,
+    "Season": 1,
+    "Episode": 12,
+    "Importance": "major",
+    "No-Spoiler Description": "The finale reframes the rebellion's beginnings.",
+    "Spoiler Description": ""
+  },
+  {
+    "Title": "The Mandalorian",
+    "id": 82856,
+    "Season": 2,
+    "Episode": 5,
+    "Importance": "secondary",
+    "No-Spoiler Description": "An important character appears.",
+    "Spoiler Description": ""
+  },
+  {
+    "Title": "The Mandalorian",
+    "id": 82856,
+    "Season": 2,
+    "Episode": 8,
+    "Importance": "major",
+    "No-Spoiler Description": "A powerful figure returns unexpectedly.",
+    "Spoiler Description": ""
+  },
+  {
+    "Title": "Obi-Wan Kenobi",
+    "id": 92830,
+    "Season": 1,
+    "Episode": 5,
+    "Importance": "secondary",
+    "No-Spoiler Description": "The past and present collide.",
+    "Spoiler Description": ""
+  },
+  {
+    "Title": "Obi-Wan Kenobi",
+    "id": 92830,
+    "Season": 1,
+    "Episode": 6,
+    "Importance": "major",
+    "No-Spoiler Description": "Two former allies face off with emotional consequences.",
+    "Spoiler Description": ""
+  },
+  {
+    "Title": "The Book of Boba Fett",
+    "id": 115036,
+    "Season": 1,
+    "Episode": 5,
+    "Importance": "secondary",
+    "No-Spoiler Description": "The focus of the show shifts.",
+    "Spoiler Description": ""
+  },
+  {
+    "Title": "The Book of Boba Fett",
+    "id": 115036,
+    "Season": 1,
+    "Episode": 6,
+    "Importance": "secondary",
+    "No-Spoiler Description": "A familiar face brings new choices.",
+    "Spoiler Description": ""
+  },
+  {
+    "Title": "Ahsoka",
+    "id": 114461,
+    "Season": 1,
+    "Episode": 4,
+    "Importance": "secondary",
+    "No-Spoiler Description": "An intense duel leads to an unexpected journey.",
+    "Spoiler Description": ""
+  },
+  {
+    "Title": "Ahsoka",
+    "id": 114461,
+    "Season": 1,
+    "Episode": 5,
+    "Importance": "secondary",
+    "No-Spoiler Description": "A character experiences visions beyond space and time.",
+    "Spoiler Description": ""
+  },
+  {
+    "Title": "Resistance",
+    "id": 79093,
+    "Season": 1,
+    "Episode": 19,
+    "Importance": "secondary",
+    "No-Spoiler Description": "The larger war creeps closer.",
+    "Spoiler Description": ""
+  },
+  {
+    "Title": "Resistance",
+    "id": 79093,
+    "Season": 2,
+    "Episode": 1,
+    "Importance": "secondary",
+    "No-Spoiler Description": "The impact of a major galactic event is felt.",
+    "Spoiler Description": ""
+  },
+  {
+    "Title": "The Force Awakens",
+    "id":140607,
+    "Season": null,
+    "Episode": null,
+    "Importance": "major",
+    "No-Spoiler Description": "A family betrayal shakes the saga.",
+    "Spoiler Description": "Kylo Ren kills Han Solo."
+  },
+  {
+    "Title": "The Last Jedi",
+    "id": 181808,
+    "Season": null,
+    "Episode": null,
+    "Importance": "major",
+    "No-Spoiler Description": "A power shift breaks expectations.",
+    "Spoiler Description": "Snoke is killed; Rey's parents are revealed as nobodies."
+  },
+  {
+    "Title": "The Rise of Skywalker",
+    "id": 181812,
+    "Season": null,
+    "Episode": null,
+    "Importance": "major",
+    "No-Spoiler Description": "A legacy is revealed.",
+    "Spoiler Description": "Rey is a Palpatine; Palpatine returns."
+  }
+]

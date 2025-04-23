@@ -184,7 +184,7 @@ export default function getSnakePaths(items, params) {
         );
 
         return [
-          {...pathObj, path: [pathLeft.path, pathNew.path].join(' ')},
+          {...pathObj, newMode: currentMode, path: [pathLeft.path, pathNew.path].join(' ')},
         ]
       }
 
@@ -216,8 +216,12 @@ export default function getSnakePaths(items, params) {
   const gridLines = (gridLinesAt || [0]).map(at => {
     const linePaths = getPathsForType(items, 'gridLines', at);
     if (linePaths.length === 0) return null;
-    const linePath = [linePaths[0].path].concat(linePaths.slice(1).map((d, i) => {
-      return d.path.split('L')[1] ? `L ${d.path.split('L')[1]}` : `A ${d.path.split('A')[1]}`;
+    const startPath = linePaths[0].path;
+    const restPaths = linePaths.slice(1);
+    const linePath = [startPath].concat(restPaths.map((d, i) => {
+      // Strip the initial "M x y" and keep the rest
+      const match = d.path.match(/^M[^A-Z]+(.*)/);
+      return match ? match[1] : '';
     })).join(' ');
     const reverseLinePath = reverse.reverse(linePath)
     return {
