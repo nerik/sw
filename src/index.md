@@ -282,8 +282,8 @@ separatedItems = separatedItems.map((item, i) => {
   }
 })
 
-// display(separatedItems)
-// display(sectionsLengths)
+display(separatedItems)
+display(sectionsLengths)
 ```
 
 
