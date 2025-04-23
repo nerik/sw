@@ -1,0 +1,35 @@
+name: Deploy
+
+on:
+  # Run this workflow whenever a new commit is pushed to main.
+  push: {branches: [main]}
+  # Run this workflow once per day, at 10:15 UTC
+  schedule: [{cron: "15 10 * * *"}]
+  # Run this workflow when triggered manually in GitHub’s UI.
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
