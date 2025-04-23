@@ -1,4 +1,8 @@
-# Starwars Chrono
+# Starwars Unfolded
+
+By Erik Escoffier - <a href="https://bsky.app/profile/nerik.bsky.social">@nerik.bsky.social</a>
+
+Source code, datasets: etc: <a href="https://github.com/nerik/sw">Github repo</a>
 
 ```js
 import getSnakePaths from "./getSnakePaths.js";
@@ -282,8 +286,8 @@ separatedItems = separatedItems.map((item, i) => {
   }
 })
 
-display(separatedItems)
-display(sectionsLengths)
+// display(separatedItems)
+// display(sectionsLengths)
 ```
 
 
@@ -659,8 +663,8 @@ const title = header
   .append("text")
   .attr("font-size", "40px")
   .attr("fill", "#ff0")
-  .text("Star Wars unfolded")
-  // .text(sortOrder === "story chronological" ? "Star Wars unfolded: chronological order" : "Star Wars watch guide: release date")
+  // .text("Star Wars unfolded")
+  .text(sortOrder === "story chronological" ? "Star Wars unfolded: chronological order" : "Star Wars watch guide: release date")
   .style("filter", "url(#glow)");
 
 
