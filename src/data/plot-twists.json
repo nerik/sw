@@ -5,8 +5,7 @@
     "Season": null,
     "Episode": null,
     "Importance": "major",
-    "No-Spoiler Description": "A key political figure is revealed to be more than they seem.",
-    "Spoiler Description": "Darth Sidious is secretly orchestrating the events as a Sith Lord."
+    "No-Spoiler Description": "A key political figure is revealed to be more than they seem."
   },
   {
     "Title": "Attack of the Clones",
@@ -14,8 +13,7 @@
     "Season": null,
     "Episode": null,
     "Importance": "major",
-    "No-Spoiler Description": "A war begins under suspicious circumstances.",
-    "Spoiler Description": "Count Dooku reveals a Sith controls the Republic; the clone army's origins are shady."
+    "No-Spoiler Description": "A war begins under suspicious circumstances."
   },
   {
     "Title": "Revenge of the Sith",
@@ -23,8 +21,7 @@
     "Season": null,
     "Episode": null,
     "Importance": "major",
-    "No-Spoiler Description": "The Republic falls and loyalties are broken.",
-    "Spoiler Description": "Palpatine reveals himself as Darth Sidious, executes Order 66, and Anakin turns to the dark side."
+    "No-Spoiler Description": "The Republic falls and loyalties are broken."
   },
   {
     "Title": "A New Hope",
@@ -32,8 +29,7 @@
     "Season": null,
     "Episode": null,
     "Importance": "major",
-    "No-Spoiler Description": "A young hero learns the truth about their father.",
-    "Spoiler Description": "Obi-Wan tells Luke that Vader betrayed and murdered his father."
+    "No-Spoiler Description": "A young hero learns the truth about their father."
   },
   {
     "Title": "The Empire Strikes Back",
@@ -41,8 +37,7 @@
     "Season": null,
     "Episode": null,
     "Importance": "major",
-    "No-Spoiler Description": "A villain reveals a shocking truth.",
-    "Spoiler Description": "Vader tells Luke: 'I am your father.'"
+    "No-Spoiler Description": "A villain reveals a shocking truth."
   },
   {
     "Title": "Return of the Jedi",
@@ -50,8 +45,7 @@
     "Season": null,
     "Episode": null,
     "Importance": "major",
-    "No-Spoiler Description": "A final confrontation ends with redemption.",
-    "Spoiler Description": "Vader turns against the Emperor to save Luke and dies redeemed."
+    "No-Spoiler Description": "A final confrontation ends with redemption."
   },
   {
     "Title": "The Clone Wars",
@@ -59,8 +53,7 @@
     "Season": 4,
     "Episode": 21,
     "Importance": "major",
-    "No-Spoiler Description": "A presumed-dead foe returns.",
-    "Spoiler Description": "Darth Maul is revealed to be alive."
+    "No-Spoiler Description": "A presumed-dead foe returns."
   },
   {
     "Title": "The Clone Wars",
@@ -68,8 +61,7 @@
     "Season": 5,
     "Episode": 20,
     "Importance": "major",
-    "No-Spoiler Description": "A Jedi loses faith in the Order.",
-    "Spoiler Description": "Ahsoka leaves the Jedi Order after being falsely accused."
+    "No-Spoiler Description": "A Jedi loses faith in the Order."
   },
   {
     "Title": "The Clone Wars",
@@ -77,8 +69,7 @@
     "Season": 6,
     "Episode": 1,
     "Importance": "major",
-    "No-Spoiler Description": "A dark secret in the clone army begins to surface.",
-    "Spoiler Description": "Fives discovers the inhibitor chips used for Order 66."
+    "No-Spoiler Description": "A dark secret in the clone army begins to surface."
   },
   {
     "Title": "The Clone Wars",
@@ -86,8 +77,7 @@
     "Season": 7,
     "Episode": 11,
     "Importance": "major",
-    "No-Spoiler Description": "A critical order is issued and a key character must survive.",
-    "Spoiler Description": "Order 66 is executed; Ahsoka and Rex must survive the betrayal."
+    "No-Spoiler Description": "A critical order is issued and a key character must survive."
   },
   {
     "Title": "The Bad Batch",
@@ -95,8 +85,7 @@
     "Season": 1,
     "Episode": 15,
     "Importance": "major",
-    "No-Spoiler Description": "The clones face a devastating shift.",
-    "Spoiler Description": "Kamino is destroyed, and Crosshair declares loyalty to the Empire."
+    "No-Spoiler Description": "The clones face a devastating shift."
   },
   {
     "Title": "The Bad Batch",
@@ -104,8 +93,7 @@
     "Season": 2,
     "Episode": 3,
     "Importance": "secondary",
-    "No-Spoiler Description": "An isolated mission reveals emotional consequences.",
-    "Spoiler Description": "Crosshair shows signs of doubt and individual struggle."
+    "No-Spoiler Description": "An isolated mission reveals emotional consequences."
   },
   {
     "Title": "The Bad Batch",
@@ -113,8 +101,7 @@
     "Season": 2,
     "Episode": 8,
     "Importance": "major",
-    "No-Spoiler Description": "An attempt to expose the truth has consequences.",
-    "Spoiler Description": "Senator Chuchi and the Batch try to expose the Empire’s plan for the clones."
+    "No-Spoiler Description": "An attempt to expose the truth has consequences."
   },
   {
     "Title": "Rebels",
@@ -122,8 +109,7 @@
     "Season": 2,
     "Episode": 18,
     "Importance": "major",
-    "No-Spoiler Description": "A confrontation with an old enemy changes everything.",
-    "Spoiler Description": ""
+    "No-Spoiler Description": "A confrontation with an old enemy changes everything."
   },
   {
     "Title": "Rebels",
@@ -131,8 +117,7 @@
     "Season": 4,
     "Episode": 10,
     "Importance": "major",
-    "No-Spoiler Description": "A discovery reshapes what's possible.",
-    "Spoiler Description": ""
+    "No-Spoiler Description": "A discovery reshapes what's possible."
   },
   {
     "Title": "Andor",
@@ -140,8 +125,7 @@
     "Season": 1,
     "Episode": 10,
     "Importance": "major",
-    "No-Spoiler Description": "A breakout defines the character’s path.",
-    "Spoiler Description": ""
+    "No-Spoiler Description": "A breakout defines the character’s path."
   },
   {
     "Title": "Andor",
@@ -149,8 +133,7 @@
     "Season": 1,
     "Episode": 12,
     "Importance": "major",
-    "No-Spoiler Description": "The finale reframes the rebellion's beginnings.",
-    "Spoiler Description": ""
+    "No-Spoiler Description": "The finale reframes the rebellion's beginnings."
   },
   {
     "Title": "The Mandalorian",
@@ -158,8 +141,7 @@
     "Season": 2,
     "Episode": 5,
     "Importance": "secondary",
-    "No-Spoiler Description": "An important character appears.",
-    "Spoiler Description": ""
+    "No-Spoiler Description": "An important character appears."
   },
   {
     "Title": "The Mandalorian",
@@ -167,8 +149,7 @@
     "Season": 2,
     "Episode": 8,
     "Importance": "major",
-    "No-Spoiler Description": "A powerful figure returns unexpectedly.",
-    "Spoiler Description": ""
+    "No-Spoiler Description": "A powerful figure returns unexpectedly."
   },
   {
     "Title": "Obi-Wan Kenobi",
@@ -176,8 +157,7 @@
     "Season": 1,
     "Episode": 5,
     "Importance": "secondary",
-    "No-Spoiler Description": "The past and present collide.",
-    "Spoiler Description": ""
+    "No-Spoiler Description": "The past and present collide."
   },
   {
     "Title": "Obi-Wan Kenobi",
@@ -185,8 +165,7 @@
     "Season": 1,
     "Episode": 6,
     "Importance": "major",
-    "No-Spoiler Description": "Two former allies face off with emotional consequences.",
-    "Spoiler Description": ""
+    "No-Spoiler Description": "Two former allies face off with emotional consequences."
   },
   {
     "Title": "The Book of Boba Fett",
@@ -194,8 +173,7 @@
     "Season": 1,
     "Episode": 5,
     "Importance": "secondary",
-    "No-Spoiler Description": "The focus of the show shifts.",
-    "Spoiler Description": ""
+    "No-Spoiler Description": "The focus of the show shifts."
   },
   {
     "Title": "The Book of Boba Fett",
@@ -203,8 +181,7 @@
     "Season": 1,
     "Episode": 6,
     "Importance": "secondary",
-    "No-Spoiler Description": "A familiar face brings new choices.",
-    "Spoiler Description": ""
+    "No-Spoiler Description": "A familiar face brings new choices."
   },
   {
     "Title": "Ahsoka",
@@ -212,8 +189,7 @@
     "Season": 1,
     "Episode": 4,
     "Importance": "secondary",
-    "No-Spoiler Description": "An intense duel leads to an unexpected journey.",
-    "Spoiler Description": ""
+    "No-Spoiler Description": "An intense duel leads to an unexpected journey."
   },
   {
     "Title": "Ahsoka",
@@ -221,8 +197,7 @@
     "Season": 1,
     "Episode": 5,
     "Importance": "secondary",
-    "No-Spoiler Description": "A character experiences visions beyond space and time.",
-    "Spoiler Description": ""
+    "No-Spoiler Description": "A character experiences visions beyond space and time."
   },
   {
     "Title": "Resistance",
@@ -230,8 +205,7 @@
     "Season": 1,
     "Episode": 19,
     "Importance": "secondary",
-    "No-Spoiler Description": "The larger war creeps closer.",
-    "Spoiler Description": ""
+    "No-Spoiler Description": "The larger war creeps closer."
   },
   {
     "Title": "Resistance",
@@ -239,8 +213,7 @@
     "Season": 2,
     "Episode": 1,
     "Importance": "secondary",
-    "No-Spoiler Description": "The impact of a major galactic event is felt.",
-    "Spoiler Description": ""
+    "No-Spoiler Description": "The impact of a major galactic event is felt."
   },
   {
     "Title": "The Force Awakens",
@@ -248,8 +221,7 @@
     "Season": null,
     "Episode": null,
     "Importance": "major",
-    "No-Spoiler Description": "A family betrayal shakes the saga.",
-    "Spoiler Description": "Kylo Ren kills Han Solo."
+    "No-Spoiler Description": "A family betrayal shakes the saga."
   },
   {
     "Title": "The Last Jedi",
@@ -257,8 +229,7 @@
     "Season": null,
     "Episode": null,
     "Importance": "major",
-    "No-Spoiler Description": "A power shift breaks expectations.",
-    "Spoiler Description": "Snoke is killed; Rey's parents are revealed as nobodies."
+    "No-Spoiler Description": "A power shift breaks expectations."
   },
   {
     "Title": "The Rise of Skywalker",
@@ -266,7 +237,6 @@
     "Season": null,
     "Episode": null,
     "Importance": "major",
-    "No-Spoiler Description": "A legacy is revealed.",
-    "Spoiler Description": "Rey is a Palpatine; Palpatine returns."
+    "No-Spoiler Description": "A legacy is revealed."
   }
 ]

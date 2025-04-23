@@ -35,6 +35,8 @@ const CHRONOLOGICAL_ORDER = [
   [1893], //phantom menace I
   [203085, 1, [4]], // tales jedi
   [1894], // attack of the clones II
+  [4194, 2, [16]],
+  [4194, 1, [16]],
   // [3122, 1], // clone wars -- SKIP REBELS
   [12180], // the clone wars (movie)
   [4194, 3, [1,3]], // the clone wars
