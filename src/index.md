@@ -410,6 +410,7 @@ plot
     currentSelectionId = d.id;
     tooltip
       .style("display", "block")
+      .style("color", "#333333")
       .html(`
         <img src="${d.poster}" alt="${d.title}" style="max-width: 300px; display: block">
         <strong>${d.title}</strong><br>
