@@ -74,6 +74,7 @@ const CHRONOLOGICAL_ORDER = [
   [82856, 2], // mandalorian
   [115036], // bobba fett
   [82856, 3], // mandalorian
+  [1228710], // The Mandalorian and Grogu
   [114461], // ahsoka
   [202879], // skeleton crew
   [79093, 1], // Resistance
@@ -85,7 +86,7 @@ const CHRONOLOGICAL_ORDER = [
 
 
 const CATEGORIES = {
-  "theatrical": [1893, 1894, 12180, 1895, 348350, 330459, 11, 1891, 1892, 140607, 181808, 181812],
+  "theatrical": [1893, 1894, 12180, 1895, 348350, 330459, 11, 1891, 1892, 140607, 181808, 181812, 1228710],
   "live action": [114479, 92830, 83867, 82856, 114461, 202879, 115036],
   "animated": [202998, 203085, 4194, 251091, 60554, 105971, 79093, 25 /* droids */, 3478 /* ewoks */],
 }
@@ -102,6 +103,7 @@ const SHORT_TITLES = {
   140607: "Ep VII",
   181808: "Ep VIII",
   181812: "Ep IX",
+  1228710: "Mando & Grogu",
 }
 
 const COLORS_BY_CATEGORY = {
