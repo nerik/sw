@@ -29,6 +29,7 @@ const STAR_WARS_MOVIE_IDS = [
   330459, // Rogue One
   348350, // Solo
   12180, // The Clone Wars
+  1228710, // The Mandalorian and Grogu
 ];
 
 async function fetchTMDB(path) {
